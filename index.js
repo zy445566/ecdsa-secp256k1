@@ -123,7 +123,7 @@ function sign(n,pointG,p,a,d,M,encoding='utf8') {
 function verify(n,pointG,p,a,pointQ,S,M,encoding='utf8') {
     let {r,s} = S;
     let e = BigInt(`0x${Buffer.from(M,encoding).toString('hex')}`);
-    let w = inverseMulti(s,n)%n;
+    let w = inverseMulti(s,n);
     let u1 = (e*w)%n;
     let u2 = (r*w)%n;
     let u1Point = getPointByNum(u1,pointG,p,a);
@@ -143,7 +143,7 @@ function verify(n,pointG,p,a,pointQ,S,M,encoding='utf8') {
 
 let secp256k1 = config['secp256k1'];
 let pointG = num2Point(secp256k1.G);
-let key1 = BigInt(`0xeddbdc1168f1daeadbd3e44c1e3f8f5a284c2029f78ad26af98583a499de5b19`);
+let key1 = BigInt(`0x0000000000000000000000000000000000000000000000000000000000000001`);
 let publicG1 = getPointByNum(
     key1,
     pointG,secp256k1.p,secp256k1.a
@@ -154,8 +154,8 @@ let publicG2 = getPointByNum(
     pointG,secp256k1.p,secp256k1.a
 )
 let Msg = "Hello";
-let S = sign(secp256k1.n,pointG,secp256k1.p,secp256k1.a,BigInt(key1),Msg,'utf8');
-console.log(S)
+let S = sign(secp256k1.n,pointG,secp256k1.p,secp256k1.a,key1,Msg,'utf8');
+console.log(S.r.toString(16),S.s.toString(16))
 console.log(verify(secp256k1.n,pointG,secp256k1.p,secp256k1.a,publicG2,S,Msg,'utf8'))
 
 // let pointG2 = addSamePoint(pointG.x,pointG.y,secp256k1.p,secp256k1.a);
