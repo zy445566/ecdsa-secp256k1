@@ -107,10 +107,10 @@ function sign(n,pointG,p,a,d,M,encoding='utf8') {
     while(r==0n) {
         k = BigInt(`0x${getPrivteOriginKeyByRand(n)}`);
         R = getPointByNum(k,pointG,p,a);
-        r = R.x%n;
+        r = postiveMod(R.x,n);
     }
     let e = BigInt(`0x${Buffer.from(M,encoding).toString('hex')}`);
-    let s = ((e+r*d)*inverseMulti(k,n))%n;
+    let s = postiveMod(((e+(r*d))*inverseMulti(k,n)),n);
     if(s==0n) {
         return sign(n,pointG,p,a,d,M,encoding);
     }
@@ -124,8 +124,8 @@ function verify(n,pointG,p,a,pointQ,S,M,encoding='utf8') {
     let {r,s} = S;
     let e = BigInt(`0x${Buffer.from(M,encoding).toString('hex')}`);
     let w = inverseMulti(s,n);
-    let u1 = (e*w)%n;
-    let u2 = (r*w)%n;
+    let u1 = postiveMod((e*w),n);
+    let u2 = postiveMod((r*w),n);
     let u1Point = getPointByNum(u1,pointG,p,a);
     let u2Point = getPointByNum(u2,pointQ,p,a);
     let pointR;
@@ -134,7 +134,8 @@ function verify(n,pointG,p,a,pointQ,S,M,encoding='utf8') {
     } else {
         pointR = addDiffPoint(u1Point.x,u1Point.y,u2Point.x,u2Point.y,p);
     }
-    let v = pointR.x%n;
+    let v = postiveMod(pointR.x,n);
+    // console.log(v.toString(16),r.toString(16))
     if(v==r) {
         return true;
     }
@@ -143,20 +144,15 @@ function verify(n,pointG,p,a,pointQ,S,M,encoding='utf8') {
 
 let secp256k1 = config['secp256k1'];
 let pointG = num2Point(secp256k1.G);
-let key1 = BigInt(`0x0000000000000000000000000000000000000000000000000000000000000001`);
-let publicG1 = getPointByNum(
-    key1,
-    pointG,secp256k1.p,secp256k1.a
-)
-let key2 = BigInt(`0x0000000000000000000000000000000000000000000000000000000000000002`);
-let publicG2 = getPointByNum(
-    key2,
+let key = BigInt(`0x0000000000000000000000000000000000000000000000000000000000000003`);
+let publicG = getPointByNum(
+    key,
     pointG,secp256k1.p,secp256k1.a
 )
 let Msg = "Hello";
-let S = sign(secp256k1.n,pointG,secp256k1.p,secp256k1.a,key1,Msg,'utf8');
-console.log(S.r.toString(16),S.s.toString(16))
-console.log(verify(secp256k1.n,pointG,secp256k1.p,secp256k1.a,publicG2,S,Msg,'utf8'))
+let S = sign(secp256k1.n,pointG,secp256k1.p,secp256k1.a,key,Msg,'utf8');
+// console.log(S.r.toString(16),S.s.toString(16))
+console.log(verify(secp256k1.n,pointG,secp256k1.p,secp256k1.a,publicG,S,Msg,'utf8'))
 
 // let pointG2 = addSamePoint(pointG.x,pointG.y,secp256k1.p,secp256k1.a);
 // console.log(point2Num(pointG2).toString(16))
