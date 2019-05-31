@@ -1,5 +1,5 @@
 {
-  "name": "js-ecdsa-secp256k1",
+  "name": "ecdsa-secp256k1",
   "version": "1.0.0",
   "description": "only one no dependencied ecdsa secp256k1 by native js.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zy445566/js-ecdsa-secp256k1.git"
+    "url": "git+https://github.com/zy445566/ecdsa-secp256k1.git"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -23,7 +23,7 @@
   "author": "zy445566",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zy445566/js-ecdsa-secp256k1/issues"
+    "url": "https://github.com/zy445566/ecdsa-secp256k1/issues"
   },
-  "homepage": "https://github.com/zy445566/js-ecdsa-secp256k1#readme"
+  "homepage": "https://github.com/zy445566/ecdsa-secp256k1#readme"
 }

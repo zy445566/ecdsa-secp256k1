@@ -1,4 +1,4 @@
-# js-ecdsa-secp256k1
+# ecdsa-secp256k1
 only one no dependencied ecdsa secp256k1 by native js.
 
 attention：`node version request >= 12.0`
@@ -6,7 +6,7 @@ attention：`node version request >= 12.0`
 # use
 ## get private key by rand
 ```js
-let ecdsa = require('js-ecdsa-secp256k1');
+let ecdsa = require('ecdsa-secp256k1');
 ecdsa.randPrivateKeyNum().toString(16);//maybe output:b1904389afc66e8c5ec5165c4eb82d44237cc1409430302b31414a6b90123120
 ``` 
 ## get public key by private key Num
