@@ -1,5 +1,6 @@
 # ecdsa-secp256k1
 [![Build Status](https://travis-ci.org/zy445566/ecdsa-secp256k1.svg?branch=master)](https://travis-ci.org/zy445566/ecdsa-secp256k1) 
+[![codecov](https://codecov.io/gh/zy445566/ecdsa-secp256k1/branch/master/graph/badge.svg)](https://codecov.io/gh/zy445566/ecdsa-secp256k1)
 
 only one no dependencied ecdsa secp256k1 by native js.
 
