@@ -27,4 +27,4 @@ let sha1 = crypto.createHash('sha256').update(msgData).digest('hex');
 let msgDataNum = BigInt(`0x${sha1}`);
 let signData = ecdsa.sign(privateKeyNum,msgDataNum);
 ecdsa.verify(publicKeyPoint,signData,msgDataNum);//output:true
-```js
+```
