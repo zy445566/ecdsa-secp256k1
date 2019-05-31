@@ -40,7 +40,7 @@ function inverseMulti(x,modNum) {
     let q;
     let t1,t2,t3;
     while(true){
-        if(y3==0n)return null;
+        if(y3==0n)throw new Error('multiplicative inverse modulo is no answer!');
         if(y3==1n)return y2;
         q = x3/y3;
         t1=x1-q*y1;t2=x2-q*y2;t3=x3-q*y3;
@@ -117,6 +117,7 @@ function sign(n,pointG,p,a,d,mNum) {
  */
 function verify(n,pointG,p,a,pointQ,S,mNum) {
     let {r,s} = S;
+    if(!(r>0 && r<n && s>0 && s<n)){return false;}
     let e = mNum;
     let w = inverseMulti(s,n);
     let u1 = postiveMod((e*w),n);
@@ -129,8 +130,8 @@ function verify(n,pointG,p,a,pointQ,S,mNum) {
     } else {
         pointR = addDiffPoint(u1Point.x,u1Point.y,u2Point.x,u2Point.y,p);
     }
+    if(pointR.x==0n && pointR.y==0n) {return false;}
     let v = postiveMod(pointR.x,n);
-    // console.log(v.toString(16),r.toString(16))
     if(v==r) {
         return true;
     }
