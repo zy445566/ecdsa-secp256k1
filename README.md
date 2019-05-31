@@ -1,4 +1,6 @@
 # ecdsa-secp256k1
+[![Build Status](https://travis-ci.org/zy445566/ecdsa-secp256k1.svg?branch=master)](https://travis-ci.org/zy445566/ecdsa-secp256k1) 
+
 only one no dependencied ecdsa secp256k1 by native js.
 
 attention：`node version request >= 12.0`
