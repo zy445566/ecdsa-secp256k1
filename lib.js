@@ -117,7 +117,7 @@ function sign(n,pointG,p,a,d,mNum) {
  */
 function verify(n,pointG,p,a,pointQ,S,mNum) {
     let {r,s} = S;
-    if(!(r>0 && r<n && s>0 && s<n)){return false;}
+    if(!(r>0n && r<n && s>0n && s<n)){return false;}
     let e = mNum;
     let w = inverseMulti(s,n);
     let u1 = postiveMod((e*w),n);
