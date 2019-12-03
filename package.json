@@ -1,6 +1,6 @@
 {
   "name": "ecdsa-secp256k1",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "only one no dependencied ecdsa secp256k1 by native js.",
   "main": "index.js",
   "scripts": {

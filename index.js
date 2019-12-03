@@ -59,8 +59,7 @@ function verify(publicKeyPoint,signData,msgDataNum) {
         StringConvertBigNum(msgDataNum)
     );
 }
-
-module.exports = {
+const defaultData = {
     publicKeyNum2Point,
     publicKeyPoint2HexStr,
     publicKeyPoint2Num,
@@ -69,3 +68,5 @@ module.exports = {
     sign,
     verify
 }
+module.exports.default = defaultData;
+module.exports = defaultData;
