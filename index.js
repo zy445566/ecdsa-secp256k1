@@ -68,5 +68,6 @@ const defaultData = {
     sign,
     verify
 }
-module.exports.default = defaultData;
 module.exports = defaultData;
+module.exports.default = defaultData;
+
